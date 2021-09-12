@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
                       selectedTextColor: Color(0xFF000000),
                       unselectedTextColor: Color(0XFF7d8896),
                       onSelected: (proportion) {
-                        print(proportion);
+                        print("onSelected: $proportion");
                       },
                     ),
                   ],
@@ -65,7 +65,7 @@ class MyApp extends StatelessWidget {
                       selectedTextColor: Color(0xFFf1f4f6),
                       unselectedTextColor: Color(0XFF7f8997),
                       onSelected: (proportion) {
-                        print(proportion);
+                        print("onSelected: $proportion");
                       },
                     ),
                   ],
