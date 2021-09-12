@@ -1,14 +1,35 @@
 # flutter_price_slider
 
-A new Flutter project.
+A component that provides price slider just like binance. It could be used for select percentage of price.
 
-## Getting Started
+## Demo
 
-This project is a starting point for a Dart
-[package](https://flutter.dev/developing-packages/),
-a library module containing code that can be shared easily across
-multiple Flutter or Dart projects.
+You can try it on the demo site
 
-For help getting started with Flutter, view our 
-[online documentation](https://flutter.dev/docs), which offers tutorials, 
-samples, guidance on mobile development, and a full API reference.
+https://wingch.github.io/flutter_price_slider/
+
+![demo](demo.gif)
+
+## How to use
+
+```dart 
+import 'package:flutter_price_slider/flutter_price_slider.dart';
+```
+
+```dart
+FlutterPriceSlider(
+  width: 200,
+  selectedBoxColor: Color(0xFF2ebd85),
+  unselectedBoxColor: Color(0xFFf9f9f9),
+  selectedTextColor: Color(0xFF000000),
+  unselectedTextColor: Color(0XFF7d8896),
+  onSelected: (proportion) {
+    print("onSelected: $proportion");
+  },
+),
+```
+
+## Features and bugs
+
+Please file feature requests and bugs at the [issue tracker](https://github.com/WingCH/flutter_price_slider/issues).
+
