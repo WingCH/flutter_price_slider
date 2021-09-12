@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class FlutterPriceSlider extends StatefulWidget {
   const FlutterPriceSlider({
     Key? key,
+    this.width = 200,
     required this.selectedBoxColor,
     required this.unselectedBoxColor,
     required this.selectedTextColor,
@@ -12,6 +13,7 @@ class FlutterPriceSlider extends StatefulWidget {
     required this.onSelected,
   }) : super(key: key);
 
+  final double width;
   final Color selectedBoxColor;
   final Color unselectedBoxColor;
   final Color selectedTextColor;
@@ -36,13 +38,10 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 200,
+      width: widget.width,
       child: LayoutBuilder(
         builder: (_, constraints) {
-          print("maxWidth: ${constraints.maxWidth}");
-
           double maxWidth = constraints.maxWidth;
-
           return GestureDetector(
             onTap: () {},
             behavior: HitTestBehavior.deferToChild,
@@ -53,12 +52,10 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
                 onSelected(0);
                 return;
               }
-
               // Calculate the ratio relative to the parent component
               // maxWidth = 220, dx = 148.5714285714858
               // relativePosition = 0.6341463414634145
               double relativePosition = dx / maxWidth;
-
               // Find the nearest [0.25, 0.5, 0.75, 1] of relativePosition
               // relativePosition = 0.6341463414634145
               // closetsProportion = 0.75
