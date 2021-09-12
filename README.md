@@ -8,7 +8,7 @@ You can try it on the demo site
 
 https://wingch.github.io/flutter_price_slider/
 
-![demo](demo.gif)
+![demo](https://raw.githubusercontent.com/WingCH/flutter_price_slider/main/demo.gif)
 
 ## How to use
 
