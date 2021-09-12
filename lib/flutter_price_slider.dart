@@ -9,14 +9,14 @@ class FlutterPriceSlider extends StatefulWidget {
     required this.unselectedBoxColor,
     required this.selectedTextColor,
     required this.unselectedTextColor,
-    required this.onSelectedProportion,
+    required this.onSelected,
   }) : super(key: key);
 
   final Color selectedBoxColor;
   final Color unselectedBoxColor;
   final Color selectedTextColor;
   final Color unselectedTextColor;
-  final Function(double) onSelectedProportion;
+  final Function(double) onSelected;
 
   @override
   _FlutterPriceSliderState createState() => _FlutterPriceSliderState();
@@ -26,10 +26,11 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
   List<double> proportions = [0.25, 0.5, 0.75, 1];
   double selectedProportion = 0;
 
-  void onSelect(double proportion) {
-    selectedProportion = proportion;
-    setState(() {});
-    widget.onSelectedProportion(selectedProportion);
+  void onSelected(double proportion) {
+    setState(() {
+      selectedProportion = proportion;
+    });
+    widget.onSelected(selectedProportion);
   }
 
   @override
@@ -49,16 +50,16 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
               // start point (left top): 1.0
               double dx = details.localPosition.dx;
               if (dx < 0) {
-                onSelect(0);
+                onSelected(0);
                 return;
               }
 
-              // 計翻相對於父組件既比例
+              // Calculate the ratio relative to the parent component
               // maxWidth = 220, dx = 148.5714285714858
               // relativePosition = 0.6341463414634145
               double relativePosition = dx / maxWidth;
 
-              // 尋找relativePosition最接近的"比例"
+              // Find the nearest [0.25, 0.5, 0.75, 1] of relativePosition
               // relativePosition = 0.6341463414634145
               // closetsProportion = 0.75
               final double closetsProportion = proportions.reduce((a, b) {
@@ -67,7 +68,7 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
                     ? a
                     : b;
               });
-              onSelect(closetsProportion);
+              onSelected(closetsProportion);
             },
             child: Row(
               children: proportions
@@ -92,7 +93,7 @@ class _FlutterPriceSliderState extends State<FlutterPriceSlider> {
                                 textColor: selectedProportion == e
                                     ? widget.selectedTextColor
                                     : widget.unselectedTextColor,
-                                onSelect: () => onSelect(e),
+                                onSelect: () => onSelected(e),
                               ),
                             ),
                             if (index != proportions.length - 1)
@@ -144,7 +145,7 @@ class ProportionSliderItem extends StatelessWidget {
           SizedBox(height: 5),
           Text(
             '${proportion * 100}%',
-            // style: CompetitionTheme.textStyle10.copyWith(color: textColor),
+            style: TextStyle(color: textColor),
           )
         ],
       ),
